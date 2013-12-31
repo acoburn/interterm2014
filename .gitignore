@@ -1,4 +1,5 @@
 lib-cov
+*.beam
 *.seed
 *.log
 *.csv
