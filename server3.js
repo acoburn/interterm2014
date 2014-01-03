@@ -1,17 +1,20 @@
-var express = require('express');
+var http = require('http'),
+    url = require('url');
 
-var app = express();
-
-app.get('/english', function (req, res) {
-  res.send('Hello World.');
-});
-
-app.get('/german', function (req, res) {
-  res.send('Hallo Welt.');
-});
-
-app.get('*', function (req, res) {
-  res.send('errare humanum est');
+var app = http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  switch(url.parse(req.url).pathname) {
+    case '/de':
+      res.write('Hallo Welt');
+      break;
+    case '/fr':
+      res.write('Bonjour Monde');
+      break;
+    default:
+      res.write('Hello World');
+  }
+  res.end();
 });
 
 app.listen(3000);
+
