@@ -12,7 +12,7 @@ exports.index = function(req, res){
  *  GET a particular phrase.
  */
 exports.phrase = function(req, res, next) {
-  var id = parseInt(req.params.id)
+  var id = Number(req.params.id)
     , lang = req.session.lang || 'fr'
     ;
   if (id > 0 && id <= data[lang].length) {
