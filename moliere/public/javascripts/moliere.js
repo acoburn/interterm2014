@@ -1,11 +1,9 @@
 (function ($, Backbone, _, d3) {
   $(function() {
-    var Models = {}
-      , Views = {}
-      , App = {}
-      ;
     
-    Models.Phrase = Backbone.Model.extend({
+    // Phrase model
+    // ------------
+    var Phrase = Backbone.Model.extend({
       defaults: {
         lang: '',
         text: ''
@@ -13,9 +11,13 @@
       urlRoot: '/phrase'
     });
         
-    Views.Phrase = Backbone.View.extend({
+
+    // Phrase Bubble view
+    // ------------------
+    var PhraseBubble = Backbone.View.extend({
       initialize: function () {
         App.phrase.on('sync', this.render, this);
+        App.phrase.fetch({cache: false});
       },
       render: function () {
         var svg = d3.select("svg");
@@ -45,7 +47,9 @@
       }
     });
 
-    Views.NewPhrase = Backbone.View.extend({
+    // New Phrase button view
+    // ----------------------
+    var NewPhrase = Backbone.View.extend({
       events: {
         'click button': function () {
           $.post('/phrase', {last: App.phrase.id}, function (data) {
@@ -56,7 +60,9 @@
       }
     });
 
-    Views.Language = Backbone.View.extend({
+    // Language button toggle view
+    // ---------------------------
+    var Language = Backbone.View.extend({
       initialize: function () {
         App.phrase.on('sync', this.render, this);
       },
@@ -74,12 +80,13 @@
       }
     });
 
-    App.phrase = new Models.Phrase({id: 1});
+    var App = {
+      phrase: new Phrase({id: 1})
+    };
 
-    new Views.Phrase({el: 'article'});
-    new Views.NewPhrase({el: '.new-phrase'});
-    new Views.Language({el: '.language'});
+    new PhraseBubble({el: 'article'});
+    new NewPhrase({el: '.new-phrase'});
+    new Language({el: '.language'});
 
-    App.phrase.fetch({cache: false});
   });
 })(jQuery, Backbone, _, d3)
