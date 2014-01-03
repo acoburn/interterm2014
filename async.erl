@@ -15,19 +15,17 @@ pmap(F, L) ->
         || Pid <- [spawn(fun() -> Parent ! {self(), F(X)} end)
             || X <- L]].
 
-init() ->
+run(F) ->
     error_logger:tty(false),
     inets:start(),
     ssl:start(),
-    ["https://www.amherst.edu",
-     "http://www.google.com",
-     "https://lms.ats.amherst.edu",
-     "http://aws.amazon.com",
-     "https://acdc.amherst.edu",
-     "https://acdc.amherst.edu:9443"].
-
-run(F) ->
-    Urls = init(),
+    Urls = [
+        "https://www.amherst.edu",
+        "http://www.google.com",
+        "https://lms.ats.amherst.edu",
+        "http://aws.amazon.com",
+        "https://acdc.amherst.edu",
+        "https://acdc.amherst.edu:9443"],
     Start = now(),
     Results = F(fun fetch/1, Urls),
     io:format("Elapsed: ~.2f~n",
