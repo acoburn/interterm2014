@@ -1,22 +1,19 @@
-var http = require('http')
-  , url = require('url')
-  ;
+var http = require('http');
 
-var srv = http.createServer(function (req, res) {
-  var r = url.parse('http://' + req.url);
+var app = http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-
-  if (r.pathname == '/german') {
-    res.write('Hallo Welt.');
-  } else if (r.pathname == '/english') {
-    res.write('Hello World.');
-  } else if (r.pathname == '/french') {
-    res.write('Bonjour tout le monde.');
-  } else {
-    res.write('errare humanum est');
+  switch(req.headers['accept-language']) {
+    case 'de':
+      res.write('Hallo Welt');
+      break;
+    case 'fr':
+      res.write('Bonjour Monde');
+      break;
+    default:
+      res.write('Hello World');
   }
   res.end();
 });
 
-srv.listen(3000);
+app.listen(3000);
 
