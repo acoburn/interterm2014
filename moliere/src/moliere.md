@@ -33,22 +33,35 @@ in which the current phrase is displayed.
 
             render: =>
                 svg = d3.select('svg')
+
+Generate a small circle with radius=10 and fill=white
+
                 svg.append('circle')
                    .attr('cx', 330)
                    .attr('cy', 120)
                    .attr('r', 10)
                    .style('fill', 'white')
+
+Generate another small circle with radius=7 and fill=white
+
                 svg.append('circle')
                    .attr('cx', 310)
                    .attr('cy', 140)
                    .attr('r', 7)
                    .style('fill', 'white')
+
+Generate a larger ellipse with rx=250, ry=65 and a fill=white
+
                 svg.append('ellipse')
                    .attr('cx', 600)
                    .attr('cy', 100)
                    .attr('rx', 250)
                    .attr('ry', 65)
                    .style('fill', 'white')
+
+Generate a text element layered on top of the ellipse, containing
+the text of the current phrase.
+
                 svg.append('text')
                    .attr('x', 370)
                    .attr('y', 105)
@@ -95,6 +108,6 @@ Initialize the three page views.
         new NewPhrase el: '.new-phrase'
         new Language el: '.language'
 
-End of the jQuery function
+End of the jQuery document.ready wrapper
 
     )
