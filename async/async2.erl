@@ -17,11 +17,11 @@ start() ->
     Parent = self(),
     Urls = [
         "https://www.amherst.edu",
-        "http://www.google.com",
+        "https://www.google.com",
         "https://lms.ats.amherst.edu",
-        "http://aws.amazon.com",
-        "https://acdc.amherst.edu",
-        "https://acdc.amherst.edu:9443"],
+        "https://aws.amazon.com",
+        "https://foursquare.com",
+        "https://acdc.amherst.edu"],
     Count = lists:foldl(
                 fun(Url, C) -> 
                     spawn(fun() -> fetch(C, Parent, Url) end),
