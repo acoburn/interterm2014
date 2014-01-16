@@ -6,10 +6,10 @@ exports.fr = [
     'Me font vos yeux beaux mourir, belle Marquise, d\'amour.'];
 
 exports.en = [
-    'Fair Marquise, your lovely eyes make me die of love.',
+    'Fair Marquise, your beautiful eyes make me die of love.',
     'Of love to die make me, fair Marquise, your beautiful eyes.',
-    'Your lovely eyes, of love make me, fair Marquise, die.',
-    'Die, your lovely eyes, fair Marquise, of love make me.',
-    'Me make your lovely eyes die, fair Marquise, of love.'];
+    'Your beautiful eyes, of love make me, fair Marquise, die.',
+    'Die, your beautiful eyes, fair Marquise, of love make me.',
+    'Me make your beautiful eyes die, fair Marquise, of love.'];
 
  
